@@ -1,9 +1,31 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+import prisma from '../lib/prisma';
+
+export const getStaticProps: GetStaticProps = async () => {
+  const role = await prisma.role.findMany({});
+  console.log(role);
+  return {
+    props: { role },
+    revalidate: 10,
+  };
+}
+
+// fetch('http://localhost:3000/api/hello').then(response => response.json()).then(data => console.log(data));
+
+type Props = {
+  role: []
+}
+type Role = {
+  name: String,
+  id: Number
+}
+
+const Home: NextPage<Props> = (props) => {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,6 +43,10 @@ const Home: NextPage = () => {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
+
+        {
+          props.role.map((el: Role, id) => <h2 key={id}>{el.name}</h2>)
+        }
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
