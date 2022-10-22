@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String
+  users User[] 
+  @@map(name: "roles")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  surname String
+  email String? @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  role Role? @relation(fields: [role_id], references: [id])
+  role_id Int?
+  @@map(name: "users")
+  residential_community ResidentialCommunity[]
+  appartment Appartment[]
+}
+
+model ResidentialCommunity {
+  id Int @id @default(autoincrement())
+  name String
+  address String
+  manager User? @relation(fields: [user_id], references: [id])
+  user_id Int?
+  appartment Appartment[]
+  @@map(name: "residential_communities")
+}
+
+model Appartment {
+  id Int @id @default(autoincrement())
+  number Int
+  floor Int
+  squareFootage Int @map("square_footage")
+  tenants Int
+  ResidentialCommunity ResidentialCommunity? @relation(fields: [residential_community], references: [id])
+  residential_community Int?
+  manager User? @relation(fields: [user_id], references: [id])
+  user_id Int?
+  invoice Invoice[]
+  @@map(name: "appartments")
+}
+
+model Invoice {
+  id Int @id @default(autoincrement())
+  number String
+  period String
+  deadline DateTime?
+  ammount Decimal
+  payed Boolean
+  appartment Appartment @relation(fields: [appartment_id], references: [id])
+  appartment_id Int
+  @@map(name: "invoices")
+}
