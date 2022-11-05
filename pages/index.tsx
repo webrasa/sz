@@ -5,18 +5,18 @@ import styles from '../styles/Home.module.css'
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {signIn, signOut, useSession} from 'next-auth/react';
+import {getSession, signIn, signOut, useSession} from 'next-auth/react';
 
 import prisma from '../lib/prisma';
 
-export const getStaticProps: GetStaticProps = async () => {
-  const role = await prisma.role.findMany({});
-  console.log(role);
-  return {
-    props: { role },
-    revalidate: 10,
-  };
-}
+// export const getStaticProps: GetStaticProps = async () => {
+//   const role = await prisma.role.findMany({});
+//   console.log(role);
+//   return {
+//     props: { role },
+//     revalidate: 10,
+//   };
+// }
 
 // fetch('http://localhost:3000/api/hello').then(response => response.json()).then(data => console.log(data));
 
@@ -34,7 +34,11 @@ const Home: NextPage<Props> = (props) => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
+    // NOTE: This will be populated from server side getServerSideProps(). See at the bottom
+    console.log('PROPS for page ', props);
 
+
+    // NOTE: Client side checking
   const {data: session, status} = useSession();
 
   let right = null;
@@ -65,3 +69,12 @@ const Home: NextPage<Props> = (props) => {
 }
 
 export default Home
+
+// export const getServerSideProps = async(context) => {
+//   // console.log('CONTEXT ', context);
+//   const session = await getSession(context);
+//   console.log('SERVER check ', session);
+//   return {
+//     props: {session},
+//   }
+// }

@@ -49,8 +49,8 @@ const options = {
                     email: profile.email,
                 },
             });
-            if(user){
-                console.log(user);
+            if(user?.active){
+                console.log("Valid user", user.email);
                 return true;
             }
             console.log('Invalid user');
