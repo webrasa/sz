@@ -17,7 +17,7 @@ const options = {
           clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         })
     ],
-    adapter: PrismaAdapter(prisma),
+    // adapter: PrismaAdapter(prisma),
     secret: process.env.JWT_SECRET,
     callbacks: {
       // https://next-auth.js.org/configuration/callbacks
@@ -64,6 +64,12 @@ const options = {
     //       else if (new URL(url).origin === baseUrl) return url
     //       return baseUrl
     //     }
+        // NOTE: This will work only if you work with JWT. So without persisting session in database
+        // https://next-auth.js.org/configuration/callbacks#jwt-callback
+        async jwt({ token, user, account, profile, isNewUser }) {
+            console.log('JWT callback ', user);
+            return token
+        }
     },
     pages:{
       // https://next-auth.js.org/configuration/pages
