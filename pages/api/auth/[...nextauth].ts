@@ -19,6 +19,9 @@ const options = {
     ],
     // adapter: PrismaAdapter(prisma),
     secret: process.env.JWT_SECRET,
+    // session: {
+    //   strategy: 'jwt'
+    // },
     callbacks: {
       // https://next-auth.js.org/configuration/callbacks
       async signIn({account, profile}: {account: Object, profile: Object}){
@@ -41,14 +44,14 @@ const options = {
         // https://next-auth.js.org/configuration/callbacks#jwt-callback
         async jwt({ token, user, account, profile, isNewUser }) {
             console.log('JWT user ', user);
-            // console.log('JWT token ', token);
+            console.log('JWT token ', token);
             return token
         },
-        session: async({session, token, user})=>{
-          // console.log('SESSION ', session);
-          // console.log('SESSION token ', user);
-          return session;
-        }
+        // session: async({session, token, user})=>{
+        //   // console.log('SESSION ', session);
+        //   // console.log('SESSION token ', user);
+        //   return session;
+        // }
     },
     pages:{
       // https://next-auth.js.org/configuration/pages
