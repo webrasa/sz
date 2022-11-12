@@ -2,14 +2,23 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  // https://next-auth.js.org/configuration/options#session
   session: {
     strategy: "jwt",
+    maxAge: 15 * 24 * 60 * 60, // 15 days
+    // updateAge: 24 * 60 * 60, // 24 hours NOTE: Tis is ignored if you are using JWT
+  },
+  jwt:{
+
   },
   providers: [
     CredentialsProvider({
       type: "credentials",
       credentials: {},
       authorize(credentials, req) {
+        console.log('AUTHORIZE');
+        
         const { email, password } = credentials as {
           email: string;
           password: string;
@@ -36,24 +45,33 @@ const authOptions: NextAuthOptions = {
     // signOut: '/auth/signout'
   },
   callbacks: {
+
+    // signIn({user, account, profile, email, credentials}){
+    //   console.log(user);
+    //   return true;
+    // },
+
     jwt(params) {
+      console.log('CALLBACK - JWT');
+
       // update token
       if (params.user?.role) {
         params.token.role = params.user.role;
       }
-      // console.log("JWT: ", params)
-      // return final_token
       return params.token;
     },
     session: async({session, token, user})=>{
-      // console.log('SESSION ', session);
-      // console.log('SESSION token ', token);
-      // console.log('SESSION user ', user);
       session.user.role = token.role;
-      // console.log('SESSION ', session);
+      console.log('CALLBACK - SESSION');
       return session;
     }
   },
+  // https://next-auth.js.org/configuration/options#events
+  // events:{
+  //   signIn(message) {
+  //     console.log("EVENT Signin ", message);
+  //   }
+  // }
 };
 
 export default NextAuth(authOptions);

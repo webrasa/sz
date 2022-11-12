@@ -35,19 +35,20 @@ const Home: NextPage<Props> = (props) => {
     router.pathname === pathname;
 
     // NOTE: This will be populated from server side getServerSideProps(). See at the bottom
-    console.log('PROPS for page ', props);
+    // console.log('PROPS for page ', props);
 
 
     // NOTE: Client side checking
   const {data: session, status} = useSession();
 
-  console.log('SESSION ', session);
+  // console.log('SESSION ', session);
 
   let right = null;
 
   if(status === 'unauthenticated'){
     right = (
       <div>
+        index
         <p>You are not signed in!</p>
         <button onClick={() => signIn()}>Sign in</button>
       </div>
@@ -57,6 +58,7 @@ const Home: NextPage<Props> = (props) => {
   if(status === 'authenticated'){
     right = (
       <div>
+        index
         <h1>Welcome! {session.user?.email}</h1>
         <button onClick={()=> signOut()}>Sign out</button>
       </div>

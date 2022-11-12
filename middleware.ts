@@ -3,13 +3,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req: NextRequest) {
-    // return NextResponse
+    if(req.nextauth.token?.role !== 'admin'){
+      return NextResponse.rewrite(new URL("/", req.url));
+    }
+    
     return NextResponse.rewrite(new URL("/admin", req.url));
   },
   {
     callbacks: {
       authorized({ token }) {
-        console.log("Middleware ", token);
+        // console.log("RASA ", token);
+        return true;
         return token?.role === "admin";
       },
     },

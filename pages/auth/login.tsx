@@ -13,7 +13,8 @@ const SignIn: NextPage = (props): JSX.Element => {
     const res = await signIn("credentials", {
       email: userInfo.email,
       password: userInfo.password,
-      redirect: false,
+      // redirect: true,
+      callbackUrl: '/index'
     });
 
     console.log(res);
