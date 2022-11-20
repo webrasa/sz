@@ -24,6 +24,8 @@ CredentialsProvider
 https://www.youtube.com/watch?v=EFucgPdjeNg
 https://www.youtube.com/watch?v=ollnut-J47s
 
+https://www.youtube.com/watch?v=im8o328q6EI&t=102s
+
 2 hours NextAuth Course - Complete Authentication with Credentials, Google & GitHub
 https://www.youtube.com/watch?v=t0Fs0NO78X8
 https://github.com/akashyap2013/Authentication_App_with_Google_and_Github/tree/17_Final

@@ -59,7 +59,7 @@ const Home: NextPage<Props> = (props) => {
     right = (
       <div>
         index
-        <h1>Welcome! {session.user?.email}</h1>
+        <h1>Welcome! {session.user?.email} Your role is {session.user?.role}</h1>
         <button onClick={()=> signOut()}>Sign out</button>
       </div>
     )

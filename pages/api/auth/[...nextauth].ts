@@ -12,6 +12,18 @@ const authOptions: NextAuthOptions = {
   jwt:{
 
   },
+  // https://next-auth.js.org/configuration/options#example
+  cookies:{
+    sessionToken:{
+      name: 'test-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: false
+      }
+    }
+  },
   providers: [
     CredentialsProvider({
       type: "credentials",
