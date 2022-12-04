@@ -11,12 +11,12 @@ const Invoices: FC<Props> = (props): JSX.Element => {
   const [user, setUser] = useState({});
 
   
-  useEffect(()=>{
-      if(status === 'authenticated'){
-          setUser(session.user);
-        }
+  // useEffect(()=>{
+  //     if(status === 'authenticated'){
+  //         setUser(session.user);
+  //       }
         
-    }, [status]);
+  //   }, [status]);
     
     // console.log('USER ', user );
   return <div>

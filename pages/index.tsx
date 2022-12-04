@@ -61,6 +61,8 @@ const Home: NextPage<Props> = (props) => {
         index
         <h1>Welcome! {session.user?.email} Your role is {session.user?.role}</h1>
         <button onClick={()=> signOut()}>Sign out</button>
+        <br></br>
+        <Link href={'/invoices'}>Invoices</Link>
       </div>
     )
   }
