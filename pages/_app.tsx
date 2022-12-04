@@ -7,11 +7,11 @@ import nProgress from 'nprogress';
 import '../styles/nprogress.css'
 
 
-Router.events.on('routeChangeStart', nProgress.start);
-Router.events.on('routeChangeComplete', nProgress.done);
 
 function MyApp({ Component, pageProps }: AppProps) {
-
+  
+  Router.events.on('routeChangeStart', nProgress.start);
+  Router.events.on('routeChangeComplete', nProgress.done);
   
   return (
     <SessionProvider session={pageProps.session}>

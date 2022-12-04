@@ -63,6 +63,8 @@ const Home: NextPage<Props> = (props) => {
         <button onClick={()=> signOut()}>Sign out</button>
         <br></br>
         <Link href={'/invoices'}>Invoices</Link>
+        <br></br>
+        <Link href={'/admin'}>Admin</Link>
       </div>
     )
   }

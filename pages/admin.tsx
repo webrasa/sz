@@ -15,7 +15,7 @@ const Admin: FC<Props> = (props): JSX.Element => {
     <div>
       admin
         <h1>Welcome! {session?.user?.email}</h1>
-        <button onClick={()=> signOut()}>Sign out</button>
+        {/* <button onClick={()=> signOut()}>Sign out</button> */}
         <br></br>
         <Link href={'/invoices'}>Invoices</Link>
       </div>
