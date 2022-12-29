@@ -5,10 +5,11 @@ import {SessionProvider} from 'next-auth/react';
 
 import nProgress from 'nprogress';
 import '../styles/nprogress.css'
+import { Session } from 'next-auth'
 
 
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps<{session: Session}>) {
   
   Router.events.on('routeChangeStart', nProgress.start);
   Router.events.on('routeChangeComplete', nProgress.done);
