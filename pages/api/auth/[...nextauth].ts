@@ -63,18 +63,18 @@ const authOptions: NextAuthOptions = {
     //   return true;
     // },
 
-    jwt(params) {
+    jwt({token, user}) {
       console.log('CALLBACK - JWT');
 
       // update token
-      if (params.user?.role) {
-        params.token.role = params.user.role;
+      if (user?.role) {
+        token.role = user.role;
       }
-      return params.token;
+      return token;
     },
     session: async({session, token, user})=>{
-      session.user.role = token.role;
-      console.log('CALLBACK - SESSION');
+      console.log('CALLBACK - SESSION ', session);
+      session && session.user ? session.user.role = token.role : null;
       return session;
     }
   },

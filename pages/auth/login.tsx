@@ -14,7 +14,7 @@ const SignIn: NextPage = (props): JSX.Element => {
       email: userInfo.email,
       password: userInfo.password,
       // redirect: true,
-      callbackUrl: '/index'
+      callbackUrl: '/admin'
     });
 
     console.log(res);

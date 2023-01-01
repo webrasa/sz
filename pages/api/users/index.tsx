@@ -5,17 +5,17 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 // import prisma from '../../lib/prisma';
 
 // https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals
-function getMethod(type: string): String{
-    const methods = {
-        'POST': 'NewUser()',
-        'GET': 'ValidateUser()',
-        'PUT': 'UpdateUser()',
-        'DELETE': 'DeleteUser()'
-    }
+// function getMethod(type: string): String{
+//     const methods = {
+//         'POST': 'NewUser()',
+//         'GET': 'ValidateUser()',
+//         'PUT': 'UpdateUser()',
+//         'DELETE': 'DeleteUser()'
+//     }
     
-    return methods[type];
+//     return methods[type];
 
-}
+// }
 
 type Data = {
   name: String
@@ -32,5 +32,5 @@ export default async function handler(
   //   revalidate: 10,
   // };
   console.log(req.method);
-  res.status(200).json({ name: getMethod(req.method) })
+  res.status(200).json({ name: "Hard coded name" })
 }
