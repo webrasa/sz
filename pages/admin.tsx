@@ -1,6 +1,7 @@
 import { FC } from "react";
 import {getSession, signIn, signOut, useSession} from 'next-auth/react';
 import Link from "next/link";
+import Router from "next/router";
 
 
 interface Props {}
@@ -9,7 +10,9 @@ const Admin: FC<Props> = (props): JSX.Element => {
 
   const {data: session, status} = useSession();
 
-  // console.log('SESSION ', getSession());
+  if(status === 'unauthenticated'){
+    Router.replace('/auth/login');
+  }
 
   return <div>
     <div>

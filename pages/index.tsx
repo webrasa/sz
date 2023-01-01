@@ -41,8 +41,6 @@ const Home: NextPage<Props> = (props) => {
     // NOTE: Client side checking
   const {data: session, status} = useSession();
 
-  // console.log('SESSION ', session);
-
   let right = null;
 
   if(status === 'unauthenticated'){
@@ -70,7 +68,7 @@ const Home: NextPage<Props> = (props) => {
   }
 
   if (status === 'loading') {
-    return null;
+    return <div>Loading...</div>;
   }
 
   return right;

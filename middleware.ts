@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export default withAuth(
   async function middleware(req: NextRequest) {
 
-    console.log(req);
+    // console.log(req);
     
 
     const jwt = req.cookies.get("test-token");
@@ -33,15 +33,16 @@ export default withAuth(
     // return NextResponse.next();
     return NextResponse.rewrite(new URL("/admin", req.url));
   },
-  // {
-  //   callbacks: {
-  //     authorized({ token }) {
-  //       console.log("RASA ", token);
-  //       return true;
-  //       // return token?.role === "admin";
-  //     },
-  //   },
-  // }
+  {
+    callbacks: {
+      authorized({ req, token }) {
+        console.log("Authorized token ", token);
+        // console.log("Authorized req ", req);
+        return true;
+        // return token?.role === "admin";
+      },
+    },
+  }
 );
 
 export const config = { matcher: ["/", "/admin"] };
