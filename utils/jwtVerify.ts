@@ -13,13 +13,18 @@ export async function sign(payload: string, secret: string): Promise<string> {
         .sign(new TextEncoder().encode(secret));
 }
 
-export async function verify(token: string, secret: string): Promise<JWTPayload> {
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));
+export async function verify(token: string, secret: string): Promise<Boolean> {
+    try {
+        const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));
+        console.log('PAYLOAD ', payload);
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
 
-    console.log('PAYLOAD ', payload);
     
     // run some checks on the returned payload, perhaps you expect some specific values
 
     // if its all good, return it, or perhaps just return a boolean
-    return payload;
 }

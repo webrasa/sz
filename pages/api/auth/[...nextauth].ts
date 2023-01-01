@@ -29,7 +29,7 @@ const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
       authorize(credentials, req) {
-        console.log('AUTHORIZE');
+        // console.log('AUTHORIZE');
         
         const { email, password } = credentials as {
           email: string;
@@ -58,22 +58,16 @@ const authOptions: NextAuthOptions = {
   },
   callbacks: {
 
-    // signIn({user, account, profile, email, credentials}){
-    //   console.log(user);
-    //   return true;
-    // },
-
     jwt({token, user}) {
-      console.log('CALLBACK - JWT');
+      // console.log('CALLBACK - JWT');
 
-      // update token
       if (user?.role) {
         token.role = user.role;
       }
       return token;
     },
     session: async({session, token, user})=>{
-      console.log('CALLBACK - SESSION ', session);
+      // console.log('CALLBACK - SESSION ', session);
       session && session.user ? session.user.role = token.role : null;
       return session;
     }

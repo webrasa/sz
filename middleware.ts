@@ -5,14 +5,11 @@ import { NextRequest, NextResponse } from "next/server";
 export default withAuth(
   async function middleware(req: NextRequest) {
 
-    // console.log(req);
-    
-
     const jwt = req.cookies.get("test-token");
-    const url = req.url;
-    const {pathname} = req.nextUrl;
+    // const url = req.url;
+    // const {pathname} = req.nextUrl;
 
-    console.log('COOKIE ', jwt);
+    // console.log('COOKIE ', jwt);
     
     if(jwt === undefined){
       console.log('JWT UNDEF. ', jwt);
@@ -21,7 +18,7 @@ export default withAuth(
     }
 
     // try {
-    //   // await verify(jwt, process.env.NEXTAUTH_SECRET);
+    //   await verify(jwt, secret || '');
     //   // return NextResponse.next();
     //   return NextResponse.rewrite(new URL("/admin", req.url));
 
@@ -30,14 +27,11 @@ export default withAuth(
     //   return NextResponse.redirect(req.nextUrl);
     // }
     
-    // return NextResponse.next();
     return NextResponse.rewrite(new URL("/admin", req.url));
   },
   {
     callbacks: {
       authorized({ req, token }) {
-        console.log("Authorized token ", token);
-        // console.log("Authorized req ", req);
         return true;
         // return token?.role === "admin";
       },
