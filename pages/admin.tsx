@@ -20,7 +20,7 @@ const Admin: FC<Props> = (props): JSX.Element => {
         <h1>Welcome! {session?.user?.email} Your role is {session?.user?.role}</h1>
         {/* <button onClick={()=> signOut()}>Sign out</button> */}
         <br></br>
-        <Link href={'/invoices'}>Invoices</Link>
+        <Link href={'/users'}>Users</Link>
       </div>
   </div>;
 };
