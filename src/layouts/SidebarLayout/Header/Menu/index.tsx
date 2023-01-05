@@ -35,9 +35,9 @@ import {
                               position: absolute;
                               bottom: -10px;
                               transition: all .2s;
-                              border-radius: ${theme.general.borderRadiusLg};
+                              border-radius: '12px';
                               content: "";
-                              background: ${theme.colors.primary.main};
+                              background: '#CB3C1D';
                           }
                       }
                   }

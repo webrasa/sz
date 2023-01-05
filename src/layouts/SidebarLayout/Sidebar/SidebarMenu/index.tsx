@@ -47,7 +47,7 @@ const MenuWrapper = styled(Box)(
       text-transform: uppercase;
       font-weight: bold;
       font-size: ${theme.typography.pxToRem(12)};
-      color: ${theme.colors.alpha.trueWhite[50]};
+      color: ''#ffffff'';
       padding: ${theme.spacing(0, 2.5)};
       line-height: 1.4;
     }
@@ -66,7 +66,7 @@ const SubMenuWrapper = styled(Box)(
           right: ${theme.spacing(3.2)};
 
           .MuiBadge-standard {
-            background: ${theme.colors.primary.main};
+            background: ${theme.palette.primary.main};
             font-size: ${theme.typography.pxToRem(10)};
             font-weight: bold;
             text-transform: uppercase;
@@ -76,7 +76,7 @@ const SubMenuWrapper = styled(Box)(
     
         .MuiButton-root {
           display: flex;
-          color: ${theme.colors.alpha.trueWhite[70]};
+          color: ''#ffffff'';
           background-color: transparent;
           width: 100%;
           justify-content: flex-start;
@@ -93,13 +93,13 @@ const SubMenuWrapper = styled(Box)(
           }
 
           .MuiButton-startIcon {
-            color: ${theme.colors.alpha.trueWhite[30]};
+            color: '#ffffff';
             font-size: ${theme.typography.pxToRem(20)};
             margin-right: ${theme.spacing(1)};
           }
           
           .MuiButton-endIcon {
-            color: ${theme.colors.alpha.trueWhite[50]};
+            color: '#ffffff';
             margin-left: auto;
             opacity: .8;
             font-size: ${theme.typography.pxToRem(20)};
@@ -107,12 +107,12 @@ const SubMenuWrapper = styled(Box)(
 
           &.active,
           &:hover {
-            background-color: ${alpha(theme.colors.alpha.trueWhite[100], 0.06)};
-            color: ${theme.colors.alpha.trueWhite[100]};
+            background-color: '#ffffff';
+            color: '#ffffff';
 
             .MuiButton-startIcon,
             .MuiButton-endIcon {
-              color: ${theme.colors.alpha.trueWhite[100]};
+              color: '#ffffff';
             }
           }
         }
@@ -145,7 +145,7 @@ const SubMenuWrapper = styled(Box)(
 
               &:before {
                 content: ' ';
-                background: ${theme.colors.alpha.trueWhite[100]};
+                background: '#ffffff';
                 opacity: 0;
                 transition: ${theme.transitions.create([
                   'transform',

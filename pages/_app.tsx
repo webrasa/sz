@@ -20,9 +20,15 @@ import createEmotionCache from '../src/utils/emotionCache/createEmotionCache';
 import { SidebarProvider } from '../src/contexts/SidebarContext';
 import lightThemeOptions from '../styles/theme/lightThemeOptions';
 import '../styles/globals.css';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -32,6 +38,7 @@ const lightTheme = createTheme(lightThemeOptions);
   const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
 
     const { Component, emotionCache = clientSideEmotionCache, pageProps, session: Session } = props;
+    const getLayout = Component.getLayout ?? ((page) => page);
   
   Router.events.on('routeChangeStart', nProgress.start);
   Router.events.on('routeChangeError', nProgress.done);
@@ -50,7 +57,7 @@ const lightTheme = createTheme(lightThemeOptions);
         <CacheProvider value={emotionCache}>
           <ThemeProvider theme={lightTheme}>
             <CssBaseline />
-            <Component {...pageProps} />
+            {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
       </CacheProvider>
       </SidebarProvider>

@@ -13,8 +13,6 @@ interface SidebarLayoutProps {
 const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
   const theme = useTheme();
   
-  console.log("RASA 123");
-  
   return (
     <>
       <Box
@@ -26,7 +24,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
             background:
               theme.palette.mode === 'dark'
                 ? theme.colors.alpha.trueWhite[5]
-                : theme.colors.alpha.white[50],
+                : theme.palette.grey,
             marginBottom: `${theme.spacing(4)}`,
             boxShadow:
               theme.palette.mode === 'dark'
@@ -35,10 +33,10 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
                     0.15
                   )}, 0px 2px 4px -3px rgba(0, 0, 0, 0.2), 0px 5px 12px -4px rgba(0, 0, 0, .1)`
                 : `0px 2px 4px -3px ${alpha(
-                    theme.colors.alpha.black[100],
+                    theme.palette.primary.dark,
                     0.1
                   )}, 0px 5px 12px -4px ${alpha(
-                    theme.colors.alpha.black[100],
+                    theme.palette.primary.dark,
                     0.05
                   )}`
           }
@@ -52,9 +50,9 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
             zIndex: 5,
             display: 'block',
             flex: 1,
-            pt: `${theme.header.height}`,
+            pt: '80px',
             [theme.breakpoints.up('lg')]: {
-              ml: `${theme.sidebar.width}`
+              ml: '290px'
             }
           }}
         >

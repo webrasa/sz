@@ -21,12 +21,12 @@ const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
           <Box
             sx={{
               width: 5,
-              background: `${theme.colors.alpha.black[10]}`,
-              borderRadius: `${theme.general.borderRadiusLg}`,
+              background: `${theme.palette.primary.light}`,
+              borderRadius: '12px',
               transition: `${theme.transitions.create(['background'])}`,
 
               '&:hover': {
-                background: `${theme.colors.alpha.black[30]}`
+                background: `${theme.palette.primary.light}`
               }
             }}
           />

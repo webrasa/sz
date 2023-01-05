@@ -21,18 +21,18 @@ import HeaderMenu from './Menu';
 
 const HeaderWrapper = styled(Box)(
   ({ theme }) => `
-        height: ${theme.header.height};
-        color: ${theme.header.textColor};
+        height: '80px';
+        color: ''#A1A1A1'';
         padding: ${theme.spacing(0, 2)};
         right: 0;
         z-index: 6;
-        background-color: ${alpha(theme.header.background, 0.95)};
+        background-color: 'linear-gradient(60deg, #29323c 0%, #485563 100%)';
         backdrop-filter: blur(3px);
         position: fixed;
         justify-content: space-between;
         width: 100%;
         @media (min-width: ${theme.breakpoints.values.lg}px) {
-            left: ${theme.sidebar.width};
+            left: '80px';
             width: auto;
         }
 `
@@ -54,10 +54,10 @@ function Header() {
                 0.15
               )}, 0px 2px 8px -3px rgba(0, 0, 0, 0.2), 0px 5px 22px -4px rgba(0, 0, 0, .1)`
             : `0px 2px 8px -3px ${alpha(
-                theme.colors.alpha.black[100],
+                theme.palette.primary.dark,
                 0.2
               )}, 0px 5px 22px -4px ${alpha(
-                theme.colors.alpha.black[100],
+                theme.palette.primary.dark,
                 0.1
               )}`
       }}
