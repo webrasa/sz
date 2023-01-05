@@ -3,6 +3,11 @@ import {getSession, signIn, signOut, useSession} from 'next-auth/react';
 import Link from "next/link";
 import Router from "next/router";
 
+// import styles from '../styles/Home.module.css';
+
+import Topbar from '../src/layouts/Topbar';
+
+
 
 interface Props {}
 
@@ -14,7 +19,8 @@ const Admin: FC<Props> = (props): JSX.Element => {
     Router.replace('/auth/login');
   }
 
-  return <div>
+  return <div className="app">
+    <Topbar user={session?.user}/>
     <div>
       admin
         <h1>Welcome! {session?.user?.email} Your role is {session?.user?.role}</h1>

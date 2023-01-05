@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -55,7 +55,7 @@ const Home: NextPage<Props> = (props) => {
 
   if(status === 'authenticated'){
     right = (
-      <div>
+      <div className='app'>
         index
         <h1>Welcome! {session.user?.email} Your role is {session.user?.role}</h1>
         <button onClick={()=> signOut()}>Sign out</button>
