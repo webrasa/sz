@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import Link from 'next/link';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { useSession } from 'next-auth/react';
 
 type ItemType = {
     title: string,
@@ -39,12 +40,18 @@ const Item = ({ title, to, icon, selected, setSelected }: ItemType) => {
   };
 
 type Props = {
-    name: string,
-    email: string,
-    role: string
+    user: {
+        name: string,
+        email: string,
+        role: string
+    }
   }
 
-const Sidebar: NextPage<Props> = (props) => {
+const Sidebar: NextPage<Props> = ({user}) => {
+
+    // const {user} = props
+  console.log('USER ', user);
+
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -101,15 +108,15 @@ const Sidebar: NextPage<Props> = (props) => {
                     {/* User */}
                     {!isCollapsed && (
                         <Box mb="25px">
-                        <Box display="flex" justifyContent="center" alignItems="center">
-                            <img
-                                alt="profile-user"
-                                width="100px"
-                                height="100px"
-                                src={`/static/images/avatars/user.png`}
-                                style={{ cursor: "pointer", borderRadius: "50%" }}
-                            />
-                        </Box>
+                            <Box display="flex" justifyContent="center" alignItems="center">
+                                <img
+                                    alt="profile-user"
+                                    width="100px"
+                                    height="100px"
+                                    src={`/static/images/avatars/user.png`}
+                                    style={{ cursor: "pointer", borderRadius: "50%" }}
+                                />
+                            </Box>
                             <Box textAlign="center">
                                 <Typography
                                 variant="h2"
@@ -117,10 +124,10 @@ const Sidebar: NextPage<Props> = (props) => {
                                 fontWeight="bold"
                                 sx={{ m: "10px 0 0 0" }}
                                 >
-                                {props.name}
+                                {user.name}
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                                {props.role}
+                                {user.role}
                                 </Typography>
                             </Box>
                         </Box>
@@ -128,7 +135,7 @@ const Sidebar: NextPage<Props> = (props) => {
                     {/* Menu items */}
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
-                            title="Dashboard"
+                            title={isCollapsed ? '' : 'Dashboard'}
                             to="/index"
                             icon={<Home />}
                             selected={selected}
@@ -143,7 +150,7 @@ const Sidebar: NextPage<Props> = (props) => {
                             Data
                             </Typography>
                         <Item
-                            title="Manage Team"
+                            title={isCollapsed ? '' : 'Invoices'}
                             to="/invoices"
                             icon={<PeopleOutlineIcon />}
                             selected={selected}
