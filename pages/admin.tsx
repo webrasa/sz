@@ -9,26 +9,42 @@ import Router from "next/router";
 // import Sidebar from "../src/layouts/Sidebar";
 import Main from "../src/layouts/Main";
 import Dashboard from "../src/layouts/Dashboard";
+import { protect } from "../utils/protect";
 
+export function getServerSideProps(context){
+  let t;
+  const user = protect(context.req, context.res, (user)=>{t=user;
+  });
+    console.log(t);
+    
+  return {
+    props: {
+      user: t
+    }
+  }
+}
 
-
-interface Props {}
+interface Props {user:{
+  name: string,
+  email:string,
+  role:string
+}}
 
 const Admin: FC<Props> = (props): JSX.Element => {
 
-  const {data: session, status} = useSession();
+  // const {data: session, status} = useSession();
 
   // console.log("STATUS ", status);
   // console.log("session ", session);
   
 
-  if(status === 'unauthenticated'){
-    Router.replace('/auth/login');
-  }
+  // if(status === 'unauthenticated'){
+  //   Router.replace('/auth/login');
+  // }
 
-  if(status === 'authenticated'){
+  // if(status === 'authenticated'){
     return (
-      <Main user={session?.user}>
+      <Main user={props.user}>
         <Dashboard/>
         {/* admin
           <h1>Welcome! {session?.user?.email} Your role is {session?.user?.role}</h1> */}
@@ -37,7 +53,7 @@ const Admin: FC<Props> = (props): JSX.Element => {
           <Link href={'/invoices'}>Invoices</Link> */}
       </Main>
     )
-  }
+  // }
 
 };
 

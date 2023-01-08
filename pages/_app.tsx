@@ -40,14 +40,14 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
 
   
   return (
-    <SessionProvider session={pageProps.session}>
+    // <SessionProvider session={pageProps.session}>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
       </ColorModeContext.Provider>
-    </SessionProvider>
+    // </SessionProvider>
   )
 }
 

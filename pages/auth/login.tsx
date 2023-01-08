@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { signIn } from "next-auth/react";
-import { FormEventHandler, useState } from "react";
+import Router from 'next/router';
+import { FormEventHandler, useEffect, useState } from "react";
 
 interface Props {}
 
@@ -10,14 +11,20 @@ const SignIn: NextPage = (props): JSX.Element => {
     // validate your userinfo
     e.preventDefault();
 
-    const res = await signIn("credentials", {
-      email: userInfo.email,
-      password: userInfo.password,
-      redirect: true,
-      callbackUrl: '/index'
-    });
+    // const res = await signIn("credentials", {
+    //   email: userInfo.email,
+    //   password: userInfo.password,
+    //   redirect: true,
+    //   callbackUrl: '/index'
+    // });
 
-    console.log(res);
+    const res = await fetch('/api/auth/login');
+    if(res.status === 200){
+      const {token} = await res.json();
+      localStorage.setItem('sz-token', token);
+      
+      Router.replace('/admin');
+    }
   };
   return (
     <div className="sign-in-form">
